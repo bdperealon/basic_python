@@ -26,25 +26,20 @@ def filter_list(list_):
 #     Note: you will always receive a valid array containing a random assortment of direction letters
 #     ('n', 's', 'e', or 'w' only). It will never give you an empty array (that's not a walk, that's standing still!).
 def is_valid_walk(walk):
-    north_steps = 0
-    south_steps = 0
-    east_steps = 0
-    west_steps = 0
+    ns_direction = 0
+    ew_direction = 0
     if len(walk) == 10:
         for step in walk:
             match step:
                 case 'n':
-                    north_steps += 1
+                    ns_direction += 1
                 case 's':
-                    south_steps += 1
+                    ns_direction -= 1
                 case 'e':
-                    east_steps += 1
+                    ew_direction += 1
                 case 'w':
-                    west_steps += 1
-        if (north_steps - south_steps == 0) and (east_steps - west_steps == 0):
-            return True
-        else:
-            return False
+                    ew_direction -= 1
+        return ns_direction == 0 and ew_direction == 0
     else:
         return False
 
